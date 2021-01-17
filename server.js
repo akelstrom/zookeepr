@@ -5,6 +5,7 @@ const { animals } = require("./data/animals");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//callback function for GET route
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
   // Note that we save the animalsArray as filteredResults here:
@@ -42,15 +43,31 @@ function filterByQuery(query, animalsArray) {
   }
   // return the filtered results:
   return filteredResults;
+};
+
+//callback function for param route
+function findById(id, animalsArray) {
+  const result = animalsArray.filter(animal => animal.id === id)[0];
+  return result;
 }
 
 //add route
-app.get("/api/animals", (req, res) => {
+app.get("/api/animals/", (req, res) => {
   let results = animals;
   if (req.query) {
     results = filterByQuery(req.query, results);
   }
   res.json(results);
+});
+
+//new route
+app.get("/api/animals/:id",(req,res) => {
+  const result = findById(req.params.id, animals);
+  if (result) {
+    res.json(result);
+  } else {
+    res.sendStatus(404);
+  }
 });
 
 //method to make the server listen (chain onto app variable from line 4)
