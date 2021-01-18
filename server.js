@@ -108,7 +108,7 @@ app.get("/api/animals/:id",(req,res) => {
   }
 });
 
-//user input using POST
+//user input route using POST
 app.post('/api/animals', (req, res) => {
   // set id based on what the next index of the array will be
   req.body.id = animals.length.toString();
@@ -127,7 +127,17 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-//method to make the server listen (chain onto app variable from line 4)
+//new route that will take us to /animals:
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+//new route to display html content from zookeepers.html
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+//method to make the server listen (chain onto app variable from line 4)-- keep at the bottom
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}`);
 });
