@@ -12,6 +12,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+//instruct server to make these files readily avaliable
+app.use(express.static('public'));
 
 //callback function for GET route
 function filterByQuery(query, animalsArray) {
@@ -118,6 +120,11 @@ app.post('/api/animals', (req, res) => {
     const animal = createNewAnimal(req.body, animals);
     res.json(animal);
   }
+});
+
+//new route for front end index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 //method to make the server listen (chain onto app variable from line 4)
