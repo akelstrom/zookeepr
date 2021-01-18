@@ -117,16 +117,6 @@
         "hungry"
       ],
       "id": "11"
-    },
-    {
-      "name": "Money",
-      "species": "Ape",
-      "diet": "carnivore",
-      "personalityTraits": [
-        "zany",
-        "anxious"
-      ],
-      "id": "12"
     }
   ]
 }
