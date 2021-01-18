@@ -137,6 +137,10 @@ app.get('/zookeepers', (req, res) => {
   res.sendFile(path.join(__dirname, './public/zookeepers.html'));
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 //method to make the server listen (chain onto app variable from line 4)-- keep at the bottom
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}`);
